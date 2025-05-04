@@ -1,37 +1,65 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import React from "react";
-// import RepairInfo from "./RepairInfo";
+import React, { useState } from "react";
+import RepairInfo from "../components/RepairInfo.jsx";
+import repairs from "../storage/RepairData.js";
 // import PartsReceiving from "./PartsReceiving";
 // import RequiredParts from "./RequiredParts";
 // import TechnicianActions from "./TechnicianActions";
-// import allParts from "../storage/AllParts.js";
-// import warehouse from "../storage/Warehouse.js";
-// import actions from "../storage/Actions.js";
 
 const RepairPage = () => {
+  const [aaInput, setAaInput] = useState("");
+  const [selectedRepair, setSelectedRepair] = useState(null);
+  const [hasSearched, setHasSearched] = useState(false);
+
+  const handleSearch = () => {
+    const found = repairs.find((r) => r.aaNumber === aaInput.trim());
+    setSelectedRepair(found || null);
+    setHasSearched(true);
+  };
+
   return (
     <div className="container py-4">
-      <div className="row mb-4">
-        <div className="col-md-6">
-          Repair info
-          {/* <RepairInfo /> */}
+      {!selectedRepair && (
+        <div className="mb-4">
+          <input
+            type="text"
+            placeholder="Įveskite remonto numerį"
+            value={aaInput}
+            onChange={(e) => setAaInput(e.target.value)}
+            className="form-control d-inline-block w-auto me-2"
+          />
+          <button className="btn btn-primary" onClick={handleSearch}>
+            Atidaryti
+          </button>
+          {hasSearched && !selectedRepair && (
+            <p className="text-danger mt-2">
+              Remontas su tokiu numeriu nerastas.
+            </p>
+          )}
         </div>
-        <div className="col-md-6">
-          Parts Receiving
-          {/* <PartsReceiving /> */}
-        </div>
-      </div>
+      )}
 
-      <div className="row">
-        <div className="col-md-6 mb-4">
-          Required Parts
-          {/* <RequiredParts /> */}
-        </div>
-        <div className="col-md-6 mb-4">
-          Technician Actions
-          {/* <TechnicianActions /> */}
-        </div>
-      </div>
+      {selectedRepair && (
+        <>
+          <div className="row mb-4">
+            <div className="col-md-6">
+              <RepairInfo repair={selectedRepair} />
+            </div>
+            <div className="col-md-6">
+              {/* <PartsReceiving aaNumber={selectedRepair.aaNumber} /> */}
+            </div>
+          </div>
+
+          <div className="row">
+            <div className="col-md-6 mb-4">
+              {/* <RequiredParts aaNumber={selectedRepair.aaNumber} /> */}
+            </div>
+            <div className="col-md-6 mb-4">
+              {/* <TechnicianActions aaNumber={selectedRepair.aaNumber} /> */}
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 };
