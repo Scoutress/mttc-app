@@ -1,8 +1,8 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import React, { useState } from "react";
-import RepairInfo from "../components/RepairInfo.jsx";
 import repairs from "../storage/RepairData.js";
-// import PartsReceiving from "./PartsReceiving";
+import RepairInfo from "../components/RepairInfo.jsx";
+import PartsReceiving from "../components/PartsReceiving.jsx";
 // import RequiredParts from "./RequiredParts";
 // import TechnicianActions from "./TechnicianActions";
 
@@ -46,7 +46,7 @@ const RepairPage = () => {
               <RepairInfo repair={selectedRepair} />
             </div>
             <div className="col-md-6">
-              {/* <PartsReceiving aaNumber={selectedRepair.aaNumber} /> */}
+              <PartsReceiving aaNumber={selectedRepair.aaNumber} />
             </div>
           </div>
 

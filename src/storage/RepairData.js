@@ -8,6 +8,18 @@ const repairs = [
     newSupplierModel: "SM-A356BZKBEUB",
     imei: "355088505014980",
     family: "SA",
+    addedParts: [
+      {
+        code: "GH96-15528A",
+        desc: "Description",
+        date: "2025-04-28",
+      },
+      {
+        code: "GH96-15668A",
+        desc: "Descriptiona",
+        date: "2025-04-29",
+      },
+    ],
   },
 ];
 
