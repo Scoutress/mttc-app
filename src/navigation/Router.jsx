@@ -1,18 +1,22 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, Navigate } from "react-router-dom";
 import ErrorPage from "../pages/ErrorPage.jsx";
-import Routes from "./Routes";
-import Root from "./Root";
-// import HomePage from "../pages/home-page/HomePage";
+import Routes from "./Routes.jsx";
+import Root from "./Root.jsx";
+import RepairPage from "../pages/RepairPage.jsx";
 
 const Router = createBrowserRouter([
   {
     element: <Root />,
     errorElement: <ErrorPage />,
     children: [
-      // {
-      //   path: Routes.repairPage.link,
-      //   element: <RepairPage />,
-      // },
+      {
+        path: "/",
+        element: <Navigate to="/repair" replace />,
+      },
+      {
+        path: Routes.repairPage.link,
+        element: <RepairPage />,
+      },
       // {
       //   path: Routes.inputPage.link,
       //   element: <InputPage />,
