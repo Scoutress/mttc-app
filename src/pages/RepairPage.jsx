@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import repairs from "../storage/RepairData.js";
 import RepairInfo from "../components/RepairInfo.jsx";
 import PartsReceiving from "../components/PartsReceiving.jsx";
-// import RequiredParts from "./RequiredParts";
+import RequiredParts from "../components/RequiredParts";
 // import TechnicianActions from "./TechnicianActions";
 
 const RepairPage = () => {
@@ -52,7 +52,7 @@ const RepairPage = () => {
 
           <div className="row">
             <div className="col-md-6 mb-4">
-              {/* <RequiredParts aaNumber={selectedRepair.aaNumber} /> */}
+              <RequiredParts aaNumber={selectedRepair.aaNumber} />
             </div>
             <div className="col-md-6 mb-4">
               {/* <TechnicianActions aaNumber={selectedRepair.aaNumber} /> */}

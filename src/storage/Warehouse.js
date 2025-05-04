@@ -1,6 +1,6 @@
 const Warehouse = [
   { code: "GH82-34224A", quantity: 73 },
-  { code: "GH82-34225A", quantity: 11 },
+  { code: "GH82-34225A", quantity: 0 },
   { code: "GH82-34225B", quantity: 54 },
   { code: "GH82-34225D", quantity: 29 },
   { code: "GH82-34228A", quantity: 38 },

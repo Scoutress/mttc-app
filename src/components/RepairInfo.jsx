@@ -1,7 +1,16 @@
 import React from "react";
+import AllParts from "../storage/AllParts";
 
 const RepairInfo = ({ repair }) => {
   if (!repair) return null;
+
+  const nonWarrantyPartsTotal = repair.addedParts.reduce((sum, part) => {
+    const partDetails = AllParts.find((p) => p.code === part.code);
+    return sum + (partDetails ? partDetails.price / 100 : 0);
+  }, 0);
+
+  const nonWarrantyWork = repair.addedParts.length > 0 ? 29.99 : 0;
+  const totalNonWarranty = nonWarrantyPartsTotal + nonWarrantyWork;
 
   return (
     <div>
@@ -45,19 +54,17 @@ const RepairInfo = ({ repair }) => {
       )}
 
       <div className="mb-2">
-        <strong>Būsena:</strong> -
+        <strong>Negarantinės detalės:</strong>{" "}
+        {nonWarrantyPartsTotal.toFixed(2)} EUR
       </div>
       <div className="mb-2">
-        <strong>Statusas:</strong> -
+        <strong>Negarantinis darbas:</strong> {nonWarrantyWork.toFixed(2)} EUR
       </div>
       <div className="mb-2">
-        <strong>Kliento komentaras:</strong> -
+        <strong>Negarantinė suma:</strong> {totalNonWarranty.toFixed(2)} EUR
       </div>
       <div className="mb-2">
-        <strong>Techniko komentaras:</strong> -
-      </div>
-      <div className="mb-2">
-        <strong>Meistras:</strong> -
+        <strong>Bendra suma:</strong> {totalNonWarranty.toFixed(2)} EUR
       </div>
     </div>
   );
